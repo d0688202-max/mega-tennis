@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>MEGA-TENNIS ULTRAMODA | Juan & Maxi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f5f5;--ink:#171717;--muted:#707070;--orange:#ff5a1f;--red:#e52b2b;--line:#e7e7e7;--white:#fff;--dark:#101010}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}
+input:not([type="checkbox"]):not([type="file"]),select,textarea{color:#171717!important;background-color:#fff!important;caret-color:#171717}
+input::placeholder,textarea::placeholder{color:#777!important;opacity:1}
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active,textarea:-webkit-autofill,select:-webkit-autofill{-webkit-text-fill-color:#171717!important;caret-color:#171717!important;-webkit-box-shadow:0 0 0 1000px #fff inset!important;box-shadow:0 0 0 1000px #fff inset!important;transition:background-color 99999s ease-out 0s}
+button{cursor:pointer}
+.topline{background:#090909;color:#fff;text-align:center;padding:9px 12px;font-size:11px;letter-spacing:1.3px;font-weight:700}
+.topline span{color:#ff6a35}
+.header{background:#111;color:white;position:sticky;top:0;z-index:20;border-bottom:3px solid var(--orange)}
+.head-inner{max-width:1250px;margin:auto;display:flex;align-items:center;gap:22px;padding:17px 22px}
+.brand{display:flex;align-items:center;gap:11px;min-width:230px;color:white;text-decoration:none}
+.brand-mark{width:47px;height:47px;border:2px solid var(--orange);display:grid;place-items:center;font-size:17px;font-weight:900;transform:skew(-7deg);color:#fff}
+.brand-name{font-size:17px;font-weight:900;line-height:1.1;letter-spacing:.3px}
+.brand-name small{display:block;color:var(--orange);font-size:10px;letter-spacing:2.5px;margin-top:5px}
+.searchbar{flex:1;display:flex;background:#fff;border-radius:5px;overflow:hidden}
+.searchbar input{border:0;outline:0;padding:13px;width:100%;font-size:13px}
+.searchbar button{background:var(--orange);border:0;color:#fff;padding:0 18px;font-weight:800}
+.head-actions{display:flex;align-items:center;gap:10px}
+.head-actions a,.head-actions button{font-size:11px;font-weight:800;color:#fff;text-decoration:none;border:1px solid #444;background:transparent;border-radius:4px;padding:11px 12px}
+.head-actions .admin-btn{background:var(--orange);border-color:var(--orange)}
+.hero{background:linear-gradient(115deg,#090909 0%,#171717 63%,#342018 100%);color:white;overflow:hidden}
+.hero-inner{max-width:1250px;margin:auto;padding:52px 24px 54px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px;min-height:280px}
+.eyebrow{color:#ff6a35;font-size:11px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,5vw,57px);line-height:1.02;margin:13px 0 15px;font-weight:900;letter-spacing:-2px}
+.hero h1 span{color:var(--orange)}
+.hero p{max-width:510px;color:#d0d0d0;font-size:14px;line-height:1.8}
+.hero-visual{justify-self:center;text-align:center;font-size:110px;filter:drop-shadow(0 20px 22px #0008);transform:rotate(-13deg)}
+.hero-badge{display:inline-block;background:var(--orange);color:#fff;padding:12px 17px;font-size:11px;font-weight:900;letter-spacing:1px;margin-top:12px;border-radius:3px}
+.wrap{max-width:1250px;margin:auto;padding:27px 22px 60px}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:8px 0 22px}
+.section-heading h2{margin:0;font-size:25px;font-weight:900;letter-spacing:-.6px}
+.section-heading p{color:var(--muted);font-size:12px;margin:7px 0 0}
+.count{font-size:12px;color:var(--muted)}
+.filters{display:grid;grid-template-columns:1.5fr repeat(4,minmax(115px,1fr));gap:10px;background:white;padding:14px;border:1px solid var(--line);border-radius:8px;margin-bottom:20px}
+.filters input,.filters select{width:100%;min-width:0;border:1px solid #ddd;border-radius:5px;padding:11px;background:#fff;font-size:12px;outline-color:var(--orange)}
+.chips{display:flex;gap:8px;overflow:auto;padding:1px 0 16px;margin-bottom:6px}
+.chip{border:1px solid #ddd;background:#fff;padding:9px 14px;border-radius:30px;white-space:nowrap;font-size:11px;font-weight:800}
+.chip.active,.chip:hover{background:#111;color:#fff;border-color:#111}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.product-card{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;min-width:0}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #0000,0 8px 20px #0000000d}
+.product-image{height:225px;background:#f0f0f0;position:relative;display:grid;place-items:center;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.no-image{font-size:65px;opacity:.28}
+.product-tag{position:absolute;left:12px;top:12px;background:var(--orange);color:white;font-size:9px;font-weight:900;letter-spacing:.7px;padding:6px 8px;border-radius:3px}
+.product-info{padding:15px;display:flex;flex-direction:column;flex:1}
+.product-category{font-size:9px;letter-spacing:1.3px;color:var(--orange);font-weight:900;text-transform:uppercase}
+.product-info h3{font-size:14px;line-height:1.45;margin:8px 0 7px}
+.description{font-size:11px;line-height:1.6;color:var(--muted);margin:0 0 9px}
+.price{font-size:21px;font-weight:900;margin:5px 0 11px}
+.meta{font-size:10px;color:#626262;line-height:1.9}
+.buy-btn{display:block;text-align:center;text-decoration:none;background:#171717;color:white;padding:12px 10px;border-radius:4px;font-size:11px;font-weight:900;margin-top:13px}
+.buy-btn:hover{background:var(--orange)}
+.empty{background:#fff;border:1px dashed #ccc;text-align:center;padding:50px 15px;border-radius:8px;color:var(--muted);grid-column:1/-1}
+.empty strong{display:block;color:#222;font-size:16px;margin-bottom:8px}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:35px 0}
+.benefit{background:#fff;border:1px solid var(--line);border-radius:7px;padding:18px;display:flex;gap:12px;align-items:center}
+.benefit .ico{font-size:25px}
+.benefit strong{font-size:12px;display:block}
+.benefit small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.footer{background:#101010;color:#fff;padding:35px 22px}
+.footer-inner{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.footer p{font-size:11px;color:#aaa;line-height:1.8}
+.footer a{color:#fff;text-decoration:none;font-size:12px;font-weight:700;margin-left:14px}
+.footer .accent{color:var(--orange)}
+.modal-backdrop{display:none;position:fixed;inset:0;background:#000b;z-index:100;align-items:center;justify-content:center;padding:15px;overflow:auto}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:10px;width:min(100%,480px);max-height:94vh;overflow:auto;box-shadow:0 25px 80px #0005}
+.modal.wide{width:min(100%,1050px)}
+.modal-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.modal-head h2{margin:0;font-size:19px;font-weight:900}
+.close{border:0;background:#eee;width:33px;height:33px;border-radius:50%;font-size:20px}
+.modal-body{padding:22px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:800;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d8d8d8;border-radius:5px;outline-color:var(--orange);font-size:12px;background:#fff;color:#171717}
+.field textarea{min-height:75px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{border:0;border-radius:5px;padding:12px 15px;font-weight:900;font-size:12px}
+.btn-primary{background:var(--orange);color:white}
+.btn-dark{background:#171717;color:white}
+.btn-light{background:#eee;color:#222}
+.btn-danger{background:#c62828;color:#fff}
+.btn:disabled{opacity:.6;cursor:wait}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.msg{font-size:12px;line-height:1.6;padding:10px 12px;border-radius:5px;margin:0 0 13px;display:none;white-space:pre-wrap}
+.msg.show{display:block}
+.msg.error{background:#fff0f0;color:#a31313;border:1px solid #ffcaca}
+.msg.success{background:#effaf0;color:#176b25;border:1px solid #c9efce}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.admin-tabs{display:flex;gap:7px;flex-wrap:wrap}
+.admin-tabs button{border:1px solid #ddd;background:#fff;padding:10px 13px;border-radius:5px;font-size:11px;font-weight:900}
+.admin-tabs button.active{background:#111;color:#fff;border-color:#111}
+.admin-panel{display:none}
+.admin-panel.active{display:block}
+.admin-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:7px}
+.admin-table{width:100%;border-collapse:collapse;min-width:700px;font-size:11px}
+.admin-table th,.admin-table td{padding:12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+.admin-table th{background:#f5f5f5;font-weight:900}
+.mini-img{width:48px;height:43px;object-fit:cover;border-radius:4px;background:#eee}
+.status{font-weight:900;font-size:10px}
+.status.yes{color:#16803a}
+.status.no{color:#b44a16}
+.actions{display:flex;gap:5px;flex-wrap:wrap}
+.actions button{border:0;border-radius:4px;padding:7px 9px;font-size:10px;font-weight:800}
+.small-note{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 14px}
+.toast{position:fixed;right:18px;bottom:18px;z-index:200;background:#111;color:#fff;padding:14px 17px;border-radius:6px;box-shadow:0 8px 25px #0003;max-width:min(90vw,380px);font-size:12px;line-height:1.5}
+.hidden{display:none!important}
+@media(max-width:1000px){.head-inner{gap:12px;flex-wrap:wrap}.brand{min-width:200px}.searchbar{order:3;flex-basis:100%}.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.head-inner{padding:12px 15px}.brand{min-width:0;flex:1}.brand-name{font-size:14px}.brand-mark{width:40px;height:40px}.head-actions{gap:5px}.head-actions a,.head-actions button{padding:9px 8px;font-size:9px}.hero-inner{grid-template-columns:1fr;padding:36px 20px;gap:0}.hero-visual{font-size:70px;justify-self:end;margin-top:-5px}.hero h1{letter-spacing:-1px}.wrap{padding:22px 14px 40px}.section-heading h2{font-size:21px}.filters{grid-template-columns:1fr 1fr;padding:10px}.filters input{grid-column:1/-1}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-image{height:175px}.product-info{padding:11px}.product-info h3{font-size:12px}.price{font-size:18px}.benefits{grid-template-columns:1fr}.row2{grid-template-columns:1fr}.modal-body{padding:16px}.modal-head{padding:16px}.admin-top{align-items:flex-start}.footer-inner{display:block}.footer a{margin:0 12px 0 0}}
+@media(max-width:370px){.product-grid{grid-template-columns:1fr}.product-image{height:230px}}
+</style>
+</head>
+<body>
+<div class="topline">CALZADO PARA CADA PASO <span>·</span> ESTILO, COMODIDAD Y ACTITUD</div>
+<header class="header">
+  <div class="head-inner">
+    <a class="brand" href="#" aria-label="MEGA-TENNIS ULTRAMODA inicio">
+      <div class="brand-mark">MT</div>
+      <div class="brand-name">MEGA-TENNIS<br>ULTRAMODA<small>JUAN &amp; MAXI</small></div>
+    </a>
+    <form class="searchbar" id="headerSearchForm">
+      <input id="headerSearch" type="search" placeholder="Busca tenis, zapatos, botas..." aria-label="Buscar productos">
+      <button type="submit">BUSCAR</button>
+    </form>
+    <div class="head-actions">
+      <a href="https://www.instagram.com/calzadojuanmaxi/" target="_blank" rel="noopener">INSTAGRAM</a>
+      <button type="button" class="admin-btn" id="adminOpenBtn" onclick="window.openAdminLogin()">⚙ ADMINISTRAR</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">JUAN &amp; MAXI PRESENTAN</div>
+      <h1>CAMINA CON<br><span>ACTITUD.</span></h1>
+      <p>Encuentra el calzado ideal para tu estilo. Explora nuestro catálogo, revisa tallas y colores disponibles y pregunta por tu par favorito directamente por WhatsApp.</p>
+      <a href="#catalogo" class="hero-badge" style="text-decoration:none">EXPLORAR CATÁLOGO&nbsp; ↓</a>
+    </div>
+    <div class="hero-visual" aria-hidden="true">👟</div>
+  </div>
+</section>
+
+<main class="wrap" id="catalogo">
+  <div class="section-heading">
+    <div><h2>Catálogo de calzado</h2><p>Tu próximo par favorito está aquí.</p></div>
+    <div class="count" id="resultCount">Cargando productos…</div>
+  </div>
+  <div class="filters">
+    <input id="filterSearch" type="search" placeholder="Buscar por nombre o descripción">
+    <select id="filterCategory"><option value="">Todas las categorías</option></select>
+    <select id="filterSize"><option value="">Todas las tallas</option></select>
+    <select id="filterColor"><option value="">Todos los colores</option></select>
+    <select id="filterSort"><option value="recent">Más recientes</option><option value="priceAsc">Precio: menor a mayor</option><option value="priceDesc">Precio: mayor a menor</option><option value="name">Nombre A–Z</option></select>
+  </div>
+  <div class="chips" id="categoryChips"></div>
+  <div class="product-grid" id="productGrid"><div class="empty"><strong>Cargando catálogo…</strong>Conectando con la tienda.</div></div>
+  <div class="benefits">
+    <div class="benefit"><div class="ico">📲</div><div><strong>Atención por WhatsApp</strong><small>Consulta tallas, colores y disponibilidad.</small></div></div>
+    <div class="benefit"><div class="ico">👟</div><div><strong>Estilo para cada ocasión</strong><small>Explora las novedades del catálogo.</small></div></div>
+    <div class="benefit"><div class="ico">🔒</div><div><strong>Compra con confianza</strong><small>Confirma los detalles con nuestro equipo.</small></div></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="brand-name">MEGA-TENNIS <span class="accent">ULTRAMODA</span><small>JUAN &amp; MAXI</small></div><p>Calzado, estilo y comodidad.<br>© <span id="year"></span> MEGA-TENNIS ULTRAMODA.</p></div>
+    <div><a href="https://wa.me/573148959623" target="_blank" rel="noopener">WHATSAPP</a><a href="https://www.instagram.com/calzadojuanmaxi/" target="_blank" rel="noopener">INSTAGRAM</a></div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" onclick="if(event.target===this)window.closeModal('loginModal')">
+  <div class="modal">
+    <div class="modal-head"><h2 id="loginTitle">Acceso de administrador</h2><button class="close" type="button" aria-label="Cerrar" onclick="window.closeModal('loginModal')">×</button></div>
+    <div class="modal-body">
+      <p class="small-note">Inicia sesión con el correo y la contraseña que creaste en Supabase. Solo las cuentas autorizadas pueden administrar el catálogo.</p>
+      <div class="msg error" id="loginError"></div>
+      <form id="loginForm">
+        <div class="field"><label for="loginEmail">Correo electrónico</label><input id="loginEmail" type="email" autocomplete="username" required placeholder="tu-correo@ejemplo.com"></div>
+        <div class="field"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Tu contraseña"></div>
+        <button class="btn btn-primary" id="loginSubmit" type="submit" style="width:100%">INICIAR SESIÓN</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle" onclick="if(event.target===this)window.closeModal('adminModal')">
+  <div class="modal wide">
+    <div class="modal-head"><div><h2 id="adminTitle">Panel de administración</h2><div class="small-note" style="margin:5px 0 0">MEGA-TENNIS ULTRAMODA · Inventario y catálogo</div></div><button class="close" type="button" aria-label="Cerrar" onclick="window.closeModal('adminModal')">×</button></div>
+    <div class="modal-body">
+      <div class="admin-top">
+        <div class="admin-tabs">
+          <button type="button" class="active" data-tab="productsPanel">👟 Productos</button>
+          <button type="button" data-tab="categoriesPanel">🏷 Categorías</button>
+        </div>
+        <button type="button" class="btn btn-light" id="logoutBtn">Cerrar sesión</button>
+      </div>
+      <div class="msg error" id="adminError"></div>
+      <div class="msg success" id="adminSuccess"></div>
+      <section class="admin-panel active" id="productsPanel">
+        <div class="admin-top"><div><strong>Productos</strong><div class="small-note" style="margin:5px 0 0">Publica un producto para que aparezca en la tienda.</div></div><button type="button" class="btn btn-primary" id="newProductBtn">+ Nuevo producto</button></div>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Foto</th><th>Producto</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="adminProductsBody"><tr><td colspan="6">Cargando…</td></tr></tbody></table></div>
+      </section>
+      <section class="admin-panel" id="categoriesPanel">
+        <div class="admin-top"><div><strong>Categorías</strong><div class="small-note" style="margin:5px 0 0">Crea las categorías que aparecerán en los filtros.</div></div></div>
+        <form id="categoryForm" style="display:flex;gap:9px;max-width:600px;margin:15px 0"><input id="categoryName" required maxlength="60" placeholder="Ej. Tenis deportivos" style="flex:1;min-width:0;padding:11px;border:1px solid #ddd;border-radius:5px"><button class="btn btn-primary" type="submit">Agregar</button></form>
+        <div class="admin-table-wrap"><table class="admin-table" style="min-width:450px"><thead><tr><th>Categoría</th><th>Acciones</th></tr></thead><tbody id="adminCategoriesBody"></tbody></table></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle" onclick="if(event.target===this)window.closeModal('productModal')">
+  <div class="modal">
+    <div class="modal-head"><h2 id="productModalTitle">Nuevo producto</h2><button class="close" type="button" aria-label="Cerrar" onclick="window.closeModal('productModal')">×</button></div>
+    <div class="modal-body">
+      <div class="msg error" id="productError"></div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <div class="field"><label for="pName">Nombre del producto *</label><input id="pName" required maxlength="120" placeholder="Ej. Tenis urbanos clásicos"></div>
+        <div class="field"><label for="pDescription">Descripción</label><textarea id="pDescription" maxlength="1000" placeholder="Describe el producto"></textarea></div>
+        <div class="row2">
+          <div class="field"><label for="pPrice">Precio en pesos colombianos *</label><input id="pPrice" type="number" min="0" step="100" required placeholder="129900"></div>
+          <div class="field"><label for="pStock">Existencias *</label><input id="pStock" type="number" min="0" step="1" required value="1"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="pCategory">Categoría</label><select id="pCategory"><option value="">Sin categoría</option></select></div>
+          <div class="field"><label for="pSizes">Tallas (separadas por coma)</label><input id="pSizes" placeholder="36, 37, 38, 39, 40"></div>
+        </div>
+        <div class="field"><label for="pColors">Colores (separados por coma)</label><input id="pColors" placeholder="Negro, Blanco, Rojo"></div>
+        <div class="field"><label for="pImage">Foto del producto (opcional)</label><input id="pImage" type="file" accept="image/jpeg,image/png,image/webp"><div class="small-note" style="margin-top:6px">La imagen se optimiza en el navegador antes de subirla.</div><img id="imagePreview" class="hidden" alt="Vista previa" style="width:100%;max-height:180px;object-fit:contain;background:#f4f4f4;border-radius:5px;margin-top:8px"></div>
+        <label style="display:flex;gap:9px;align-items:center;font-size:12px;font-weight:800"><input id="pPublished" type="checkbox" style="width:auto"> Publicar en la tienda</label>
+        <div class="form-actions"><button class="btn btn-primary" id="saveProductBtn" type="submit">Guardar producto</button><button class="btn btn-light" type="button" onclick="window.closeModal('productModal')">Cancelar</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  'use strict';
+
+  const SUPABASE_URL = 'https://etpuvsxwhwtmczaaqhlz.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_RYn2sL59DibdccR5JI4WbQ_CqfwiSIn';
+  const WHATSAPP_NUMBER = '573148959623';
+  const INSTAGRAM_URL = 'https://www.instagram.com/calzadojuanmaxi/';
+  const BUCKET = 'zapatos';
+
+  const $ = id => document.getElementById(id);
+  const money = value => new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(Number(value)||0);
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const arrayValues = value => Array.isArray(value) ? value : String(value||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const normalize = value => String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+
+  let db = null;
+  let currentUser = null;
+  let isAdmin = false;
+  let products = [];
+  let categories = [];
+  let editingProduct = null;
+  let selectedImageFile = null;
+
+  function notify(message) {
+    const toast = $('toast');
+    toast.textContent = message;
+    toast.classList.remove('hidden');
+    clearTimeout(notify.timer);
+    notify.timer = setTimeout(() => toast.classList.add('hidden'), 4500);
+  }
+
+  function showMessage(id, message, type='error') {
+    const el = $(id);
+    if (!el) return;
+    el.textContent = message;
+    el.className = 'msg show ' + type;
+  }
+
+  function clearMessage(id) {
+    const el = $(id);
+    if (el) {
+      el.textContent = '';
+      el.className = 'msg';
+    }
+  }
+
+  function openModal(id) {
+    $(id).classList.add('open');
+  }
+
+  function closeModal(id) {
+    $(id).classList.remove('open');
+  }
+
+  window.closeModal = closeModal;
+
+  window.openAdminLogin = function() {
+    if (isAdmin && currentUser) {
+      openModal('adminModal');
+      loadAdminData();
+    } else {
+      clearMessage('loginError');
+      openModal('loginModal');
+      setTimeout(() => $('loginEmail').focus(), 100);
+    }
+  };
+
+  function updateCategoryControls() {
+    const selected = $('filterCategory').value;
+    $('filterCategory').innerHTML = '<option value="">Todas las categorías</option>' +
+      categories.map(c => `<option value="${esc(c.id)}">${esc(c.nombre)}</option>`).join('');
+    $('filterCategory').value = selected;
+
+    const productSelected = $('pCategory').value;
+    $('pCategory').innerHTML = '<option value="">Sin categoría</option>' +
+      categories.map(c => `<option value="${esc(c.id)}">${esc(c.nombre)}</option>`).join('');
+    $('pCategory').value = productSelected;
+  }
+
+  function renderCategoryChips() {
+    const selected = $('filterCategory').value;
+    $('categoryChips').innerHTML = [
+      `<button class="chip ${selected===''?'active':''}" type="button" data-category="">Todas</button>`,
+      ...categories.map(c => `<button class="chip ${selected===String(c.id)?'active':''}" type="button" data-category="${esc(c.id)}">${esc(c.nombre)}</button>`)
+    ].join('');
+  }
+
+  function updateFilterOptions() {
+    const size = $('filterSize').value;
+    const color = $('filterColor').value;
+    const sizes = [...new Set(products.flatMap(p=>arrayValues(p.tallas)))].sort((a,b)=>String(a).localeCompare(String(b),'es',{numeric:true}));
+    const colors = [...new Set(products.flatMap(p=>arrayValues(p.colores)))].sort((a,b)=>String(a).localeCompare(String(b),'es'));
+    $('filterSize').innerHTML = '<option value="">Todas las tallas</option>' + sizes.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');
+    $('filterColor').innerHTML = '<option value="">Todos los colores</option>' + colors.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    $('filterSize').value = sizes.includes(size) ? size : '';
+    $('filterColor').value = colors.includes(color) ? color : '';
+  }
+
+  function renderProducts() {
+    const search = normalize($('filterSearch').value);
+    const category = $('filterCategory').value;
+    const size = normalize($('filterSize').value);
+    const color = normalize($('filterColor').value);
+    const sort = $('filterSort').value;
+
+    let list = products.filter(p => {
+      const text = normalize(`${p.nombre||''} ${p.descripcion||''}`);
+      return (!search || text.includes(search)) &&
+        (!category || String(p.categoria_id||'')===category) &&
+        (!size || arrayValues(p.tallas).some(v=>normalize(v)===size)) &&
+        (!color || arrayValues(p.colores).some(v=>normalize(v)===color));
+    });
+
+    if (sort==='priceAsc') list.sort((a,b)=>Number(a.precio)-Number(b.precio));
+    else if (sort==='priceDesc') list.sort((a,b)=>Number(b.precio)-Number(a.precio));
+    else if (sort==='name') list.sort((a,b)=>String(a.nombre).localeCompare(String(b.nombre),'es'));
+    else list.sort((a,b)=>new Date(b.creado_en||0)-new Date(a.creado_en||0));
+
+    $('resultCount').textContent = `${list.length} producto${list.length===1?'':'s'}`;
+
+    if (!list.length) {
+      $('productGrid').innerHTML = '<div class="empty"><strong>No encontramos productos</strong>Prueba cambiando los filtros o vuelve más tarde.</div>';
+      return;
+    }
+
+    $('productGrid').innerHTML = list.map(p => {
+      const categoryName = categories.find(c=>String(c.id)===String(p.categoria_id))?.nombre || 'Calzado';
+      const image = p.imagen_url ? `<img src="${esc(p.imagen_url)}" alt="${esc(p.nombre)}" loading="lazy" onerror="this.style.display='none'">` : '<div class="no-image">👟</div>';
+      const sizes = arrayValues(p.tallas);
+      const colors = arrayValues(p.colores);
+      const stock = Number(p.existencias)||0;
+      const message = `Hola, me interesa este producto de MEGA-TENNIS ULTRAMODA:\n${p.nombre}\nPrecio: ${money(p.precio)}\nTallas: ${sizes.join(', ')||'Consultar'}\nColores: ${colors.join(', ')||'Consultar'}\n¿Me pueden dar más información?`;
+      const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      return `<article class="product-card">
+        <div class="product-image">${image}${stock>0?'<span class="product-tag">DISPONIBLE</span>':'<span class="product-tag" style="background:#555">AGOTADO</span>'}</div>
+        <div class="product-info">
+          <div class="product-category">${esc(categoryName)}</div>
+          <h3>${esc(p.nombre)}</h3>
+          ${p.descripcion?`<p class="description">${esc(p.descripcion)}</p>`:''}
+          <div class="price">${money(p.precio)}</div>
+          <div class="meta">Tallas: ${esc(sizes.join(', ')||'Consultar')}<br>Colores: ${esc(colors.join(', ')||'Consultar')}<br>Existencias: ${stock}</div>
+          <a class="buy-btn" href="${link}" target="_blank" rel="noopener">${stock>0?'CONSULTAR POR WHATSAPP':'CONSULTAR DISPONIBILIDAD'}</a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  async function loadPublicData() {
+    if (!db) return;
+    const [catResult, productResult] = await Promise.all([
+      db.from('categorias').select('*').order('nombre'),
+      db.from('zapatos').select('*').eq('publicado',true).order('creado_en',{ascending:false})
+    ]);
+
+    if (catResult.error) console.error('Categorías:',catResult.error.message);
+    else categories = catResult.data || [];
+
+    if (productResult.error) {
+      console.error('Productos:',productResult.error.message);
+      $('productGrid').innerHTML = '<div class="empty"><strong>No se pudo cargar el catálogo</strong>Revisa tu conexión y las políticas de lectura de Supabase.</div>';
+      $('resultCount').textContent = 'Error al cargar';
+      return;
+    }
+
+    products = productResult.data || [];
+    updateCategoryControls();
+    updateFilterOptions();
+    renderCategoryChips();
+    renderProducts();
+  }
+
+  async function checkAdmin() {
+    const {data:sessionData} = await db.auth.getSession();
+    currentUser = sessionData?.session?.user || null;
+    if (!currentUser) {
+      isAdmin = false;
+      return false;
+    }
+
+    const {data,error} = await db.rpc('es_administrador');
+    if (error) {
+      console.error('Verificación de administrador:',error);
+      throw new Error('La sesión inició, pero no se pudo verificar el permiso de administrador. Revisa que exista la función es_administrador() y su permiso EXECUTE en Supabase. Detalle: '+error.message);
+    }
+
+    isAdmin = data===true;
+    if (!isAdmin) throw new Error('Este usuario no está autorizado como administrador. Comprueba que su UID esté registrado en public.administradores.');
+    return true;
+  }
+
+  async function loadAdminData() {
+    if (!db || !isAdmin) return;
+    clearMessage('adminError');
+    const [productResult,categoryResult] = await Promise.all([
+      db.from('zapatos').select('*').order('creado_en',{ascending:false}),
+      db.from('categorias').select('*').order('nombre')
+    ]);
+
+    if (productResult.error) {
+      showMessage('adminError','No se pudieron cargar los productos: '+productResult.error.message);
+      return;
+    }
+    if (categoryResult.error) {
+      showMessage('adminError','No se pudieron cargar las categorías: '+categoryResult.error.message);
+      return;
+    }
+
+    categories = categoryResult.data || [];
+    updateCategoryControls();
+    renderAdminProducts(productResult.data||[]);
+    renderAdminCategories();
+    await loadPublicData();
+  }
+
+  function renderAdminProducts(rows) {
+    $('adminProductsBody').innerHTML = rows.length ? rows.map(p => {
+      const img = p.imagen_url ? `<img class="mini-img" src="${esc(p.imagen_url)}" alt="">` : '👟';
+      return `<tr>
+        <td>${img}</td>
+        <td>${esc(p.nombre)}</td>
+        <td>${money(p.precio)}</td>
+        <td>${Number(p.existencias)||0}</td>
+        <td><span class="status ${p.publicado?'yes':'no'}">${p.publicado?'Publicado':'Oculto'}</span></td>
+        <td><div class="actions">
+          <button type="button" style="background:#eee" data-edit="${esc(p.id)}">Editar</button>
+          <button type="button" style="background:${p.publicado?'#fff0df':'#e8f7eb'}" data-toggle="${esc(p.id)}" data-published="${p.publicado?'true':'false'}">${p.publicado?'Ocultar':'Publicar'}</button>
+          <button type="button" style="background:#ffe9e9;color:#9c1c1c" data-delete="${esc(p.id)}">Eliminar</button>
+        </div></td>
+      </tr>`;
+    }).join('') : '<tr><td colspan="6">Todavía no hay productos. Pulsa “Nuevo producto” para agregar el primero.</td></tr>';
+  }
+
+  function renderAdminCategories() {
+    $('adminCategoriesBody').innerHTML = categories.length ? categories.map(c=>`<tr><td>${esc(c.nombre)}</td><td><div class="actions"><button type="button" style="background:#ffe9e9;color:#9c1c1c" data-delete-category="${esc(c.id)}">Eliminar</button></div></td></tr>`).join('') : '<tr><td colspan="2">Todavía no hay categorías.</td></tr>';
+  }
+
+  document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('.admin-panel').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.tab));
+  }));
+
+  $('adminProductsBody').addEventListener('click',async e=>{
+    const edit=e.target.closest('[data-edit]');
+    const toggle=e.target.closest('[data-toggle]');
+    const del=e.target.closest('[data-delete]');
+
+    if(edit){
+      const {data,error}=await db.from('zapatos').select('*').eq('id',edit.dataset.edit).single();
+      if(error){showMessage('adminError',error.message);return;}
+      openProductForm(data);
+    }
+
+    if(toggle){
+      const published=toggle.dataset.published==='true';
+      const {error}=await db.from('zapatos').update({publicado:!published}).eq('id',toggle.dataset.toggle);
+      if(error){showMessage('adminError','No se pudo cambiar el estado: '+error.message);return;}
+      showMessage('adminSuccess',published?'Producto ocultado de la tienda.':'Producto publicado en la tienda.','success');
+      await loadAdminData();
+    }
+
+    if(del){
+      if(!confirm('¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.'))return;
+      const id=del.dataset.delete;
+      const {data,error}=await db.from('zapatos').select('imagen_url').eq('id',id).maybeSingle();
+      if(error){showMessage('adminError',error.message);return;}
+      const {error:deleteError}=await db.from('zapatos').delete().eq('id',id);
+      if(deleteError){showMessage('adminError','No se pudo eliminar: '+deleteError.message);return;}
+      if(data?.imagen_url){
+        const path=storagePathFromUrl(data.imagen_url);
+        if(path)await db.storage.from(BUCKET).remove([path]);
+      }
+      showMessage('adminSuccess','Producto eliminado.','success');
+      await loadAdminData();
+    }
+  });
+
+  $('adminCategoriesBody').addEventListener('click',async e=>{
+    const del=e.target.closest('[data-delete-category]');
+    if(!del)return;
+    if(!confirm('¿Eliminar esta categoría? Los productos vinculados quedarán sin categoría.'))return;
+    const {error}=await db.from('categorias').delete().eq('id',del.dataset.deleteCategory);
+    if(error){showMessage('adminError','No se pudo eliminar la categoría: '+error.message);return;}
+    showMessage('adminSuccess','Categoría eliminada.','success');
+    await loadAdminData();
+  });
+
+  $('categoryForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    clearMessage('adminError');
+    const nombre=$('categoryName').value.trim();
+    if(!nombre)return;
+    const {error}=await db.from('categorias').insert({nombre});
+    if(error){showMessage('adminError','No se pudo crear la categoría: '+error.message);return;}
+    $('categoryName').value='';
+    showMessage('adminSuccess','Categoría creada.','success');
+    await loadAdminData();
+  });
+
+  function openProductForm(p=null) {
+    editingProduct=p;
+    selectedImageFile=null;
+    $('productForm').reset();
+    clearMessage('productError');
+    $('productId').value=p?.id||'';
+    $('productModalTitle').textContent=p?'Editar producto':'Nuevo producto';
+    $('saveProductBtn').textContent=p?'Guardar cambios':'Guardar producto';
+    $('pName').value=p?.nombre||'';
+    $('pDescription').value=p?.descripcion||'';
+    $('pPrice').value=p?.precio??'';
+    $('pStock').value=p?.existencias??1;
+    $('pSizes').value=arrayValues(p?.tallas).join(', ');
+    $('pColors').value=arrayValues(p?.colores).join(', ');
+    updateCategoryControls();
+    $('pCategory').value=p?.categoria_id?String(p.categoria_id):'';
+    $('pPublished').checked=Boolean(p?.publicado);
+    $('pImage').value='';
+    if(p?.imagen_url){
+      $('imagePreview').src=p.imagen_url;
+      $('imagePreview').classList.remove('hidden');
+    } else {
+      $('imagePreview').removeAttribute('src');
+      $('imagePreview').classList.add('hidden');
+    }
+    openModal('productModal');
+  }
+
+  $('newProductBtn').addEventListener('click',()=>openProductForm());
+
+  $('pImage').addEventListener('change',()=>{
+    selectedImageFile=$('pImage').files?.[0]||null;
+    if(selectedImageFile){
+      if(!selectedImageFile.type.startsWith('image/')){
+        showMessage('productError','Selecciona un archivo de imagen válido.');
+        selectedImageFile=null;
+        return;
+      }
+      const reader=new FileReader();
+      reader.onload=()=>{
+        $('imagePreview').src=reader.result;
+        $('imagePreview').classList.remove('hidden');
+      };
+      reader.readAsDataURL(selectedImageFile);
+    }
+  });
+
+  async function compressImage(file) {
+    if(file.size<350*1024 && file.type==='image/webp')return file;
+    const dataUrl=await new Promise((resolve,reject)=>{
+      const r=new FileReader();
+      r.onload=()=>resolve(r.result);
+      r.onerror=reject;
+      r.readAsDataURL(file);
+    });
+    const img=await new Promise((resolve,reject)=>{
+      const i=new Image();
+      i.onload=()=>resolve(i);
+      i.onerror=()=>reject(new Error('No se pudo leer la imagen.'));
+      i.src=dataUrl;
+    });
+    const max=1400;
+    const scale=Math.min(1,max/Math.max(img.width,img.height));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(img.width*scale));
+    canvas.height=Math.max(1,Math.round(img.height*scale));
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',.82));
+    if(!blob)throw new Error('No se pudo optimizar la imagen.');
+    return new File([blob],`producto-${Date.now()}.webp`,{type:'image/webp'});
+  }
+
+  async function uploadProductImage(file) {
+    const compressed=await compressImage(file);
+    const safeName=compressed.name.toLowerCase().replace(/[^a-z0-9.-]/g,'-');
+    const path=`productos/${Date.now()}-${Math.random().toString(36).slice(2,9)}-${safeName}`;
+    const {error}=await db.storage.from(BUCKET).upload(path,compressed,{cacheControl:'3600',upsert:false,contentType:compressed.type});
+    if(error)throw error;
+    const {data}=db.storage.from(BUCKET).getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  function storagePathFromUrl(url) {
+    try {
+      const parsed=new URL(url);
+      const marker=`/storage/v1/object/public/${BUCKET}/`;
+      const i=parsed.pathname.indexOf(marker);
+      return i>=0?decodeURIComponent(parsed.pathname.slice(i+marker.length)):null;
+    } catch {
+      return null;
+    }
+  }
+
+  $('productForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    clearMessage('productError');
+    const name=$('pName').value.trim();
+    const price=Number($('pPrice').value);
+    const stock=Number($('pStock').value);
+
+    if(!name){showMessage('productError','Escribe el nombre del producto.');return;}
+    if(!Number.isFinite(price)||price<0){showMessage('productError','El precio debe ser cero o mayor.');return;}
+    if(!Number.isInteger(stock)||stock<0){showMessage('productError','Las existencias deben ser un número entero igual o mayor que cero.');return;}
+
+    const btn=$('saveProductBtn');
+    btn.disabled=true;
+    btn.textContent='GUARDANDO…';
+
+    try {
+      let imageUrl=editingProduct?.imagen_url||'';
+      if(selectedImageFile)imageUrl=await uploadProductImage(selectedImageFile);
+
+      const payload={
+        nombre:name,
+        descripcion:$('pDescription').value.trim(),
+        precio:price,
+        existencias:stock,
+        categoria_id:$('pCategory').value?Number($('pCategory').value):null,
+        tallas:arrayValues($('pSizes').value),
+        colores:arrayValues($('pColors').value),
+        imagen_url:imageUrl,
+        publicado:$('pPublished').checked
+      };
+
+      let result;
+      if(editingProduct)result=await db.from('zapatos').update(payload).eq('id',editingProduct.id);
+      else result=await db.from('zapatos').insert(payload);
+
+      if(result.error)throw result.error;
+
+      closeModal('productModal');
+      showMessage('adminSuccess',editingProduct?'Producto actualizado correctamente.':'Producto creado correctamente.','success');
+      await loadAdminData();
+      await loadPublicData();
+    } catch(err) {
+      console.error('Guardar producto:',err);
+      showMessage('productError','No se pudo guardar el producto: '+(err.message||'Error desconocido')+'. Revisa las políticas de tablas y Storage en Supabase.');
+    } finally {
+      btn.disabled=false;
+      btn.textContent=editingProduct?'Guardar cambios':'Guardar producto';
+    }
+  });
+
+  $('loginForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    clearMessage('loginError');
+
+    if(!db){
+      showMessage('loginError','No se pudo conectar con Supabase. Comprueba tu conexión a internet y recarga la página.');
+      return;
+    }
+
+    const email=$('loginEmail').value.trim();
+    const password=$('loginPassword').value;
+    const btn=$('loginSubmit');
+    btn.disabled=true;
+    btn.textContent='VERIFICANDO…';
+
+    try {
+      const {error}=await db.auth.signInWithPassword({email,password});
+      if(error)throw error;
+      await checkAdmin();
+      closeModal('loginModal');
+      openModal('adminModal');
+      showMessage('adminSuccess','Sesión iniciada correctamente.','success');
+      await loadAdminData();
+    } catch(err) {
+      console.error('Inicio de sesión:',err);
+      showMessage('loginError',err.message||'No se pudo iniciar sesión.');
+      if(db)await db.auth.signOut();
+      currentUser=null;
+      isAdmin=false;
+    } finally {
+      btn.disabled=false;
+      btn.textContent='INICIAR SESIÓN';
+    }
+  });
+
+  $('logoutBtn').addEventListener('click',async()=>{
+    if(db)await db.auth.signOut();
+    currentUser=null;
+    isAdmin=false;
+    closeModal('adminModal');
+    notify('Sesión cerrada correctamente.');
+  });
+
+  $('headerSearchForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    $('filterSearch').value=$('headerSearch').value;
+    renderProducts();
+    $('catalogo').scrollIntoView({behavior:'smooth'});
+  });
+
+  $('filterSearch').addEventListener('input',renderProducts);
+  ['filterCategory','filterSize','filterColor','filterSort'].forEach(id=>$(id).addEventListener('change',()=>{
+    renderCategoryChips();
+    renderProducts();
+  }));
+
+  $('categoryChips').addEventListener('click',e=>{
+    const chip=e.target.closest('[data-category]');
+    if(!chip)return;
+    $('filterCategory').value=chip.dataset.category;
+    renderCategoryChips();
+    renderProducts();
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      document.querySelectorAll('.modal-backdrop.open').forEach(el=>closeModal(el.id));
+    }
+  });
+
+  async function initialize() {
+    $('year').textContent=new Date().getFullYear();
+
+    if(!window.supabase || !window.supabase.createClient){
+      $('productGrid').innerHTML='<div class="empty"><strong>No se pudo iniciar la tienda</strong>La biblioteca de Supabase no cargó. Comprueba internet y recarga.</div>';
+      $('resultCount').textContent='Sin conexión';
+      return;
+    }
+
+    try {
+      db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+      await loadPublicData();
+
+      const {data}=await db.auth.getSession();
+      if(data?.session?.user){
+        try {
+          await checkAdmin();
+        } catch(err) {
+          console.warn('Sesión existente sin permisos de administrador:',err.message);
+          isAdmin=false;
+        }
+      }
+    } catch(err) {
+      console.error('Inicialización:',err);
+      $('productGrid').innerHTML='<div class="empty"><strong>Error de conexión</strong>Revisa la conexión a internet y la configuración de Supabase.</div>';
+      $('resultCount').textContent='Error';
+    }
+  }
+
+  initialize();
+})();
+</script>
+</body>
+</html>
